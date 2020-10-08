@@ -16,6 +16,7 @@ dependencies {
 }
 ```
 <br/>
+
 #### Reading Device info
 
 Create an instance of DeviceInfo class. It is recommended to reuse this instance when possible instead of creating a new one each time.
