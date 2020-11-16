@@ -123,5 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 DeviceInfo.Field.FISCAL_ID, DeviceInfo.Field.IMEI_NUMBER, DeviceInfo.Field.IMSI_NUMBER
         );
 
+        // Example 3: Setting bank parameters
+        deviceInfo.setBankParams(result-> {
+            Log.i("Example 3", "setBankParams returned: " + result);
+        }, "13232", "122a2");
+
     }
 }
