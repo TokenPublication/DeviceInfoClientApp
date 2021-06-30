@@ -123,10 +123,26 @@ public class MainActivity extends AppCompatActivity {
                 DeviceInfo.Field.FISCAL_ID, DeviceInfo.Field.IMEI_NUMBER, DeviceInfo.Field.IMSI_NUMBER
         );
 
-        // Example 3: Setting bank parameters
-        deviceInfo.setBankParams(result-> {
-            Log.i("Example 3", "setBankParams returned: " + result);
-        }, "13232", "122a2");
+        // Example 3: Getting mode of Operation
+        deviceInfo.getOperationMode(new DeviceInfo.DeviceInfoResponseHandler() {
+            @Override
+            public void onSuccess(String result) {
+                String operationModeStr = result;
+                // if you prefer to store it in enum form;
+                DeviceInfo.PosModeEnum operationMode = DeviceInfo.PosModeEnum.valueOf(operationModeStr);
 
+                Log.i("Example 3", "getOperationMode returned: " + operationMode);
+            }
+
+            @Override
+            public void onFail(String errMessage) {
+                Log.e("DeviceInfoService", errMessage);
+            }
+        });
+
+        // Example 4: Setting bank parameters
+        deviceInfo.setBankParams(result-> {
+            Log.i("Example 4", "setBankParams returned: " + result);
+        }, "13232", "122a2");
     }
 }
