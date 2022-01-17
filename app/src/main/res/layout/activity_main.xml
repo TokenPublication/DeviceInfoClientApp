@@ -70,20 +70,9 @@
         <TableRow>
             <TextView
                 android:padding="3dip"
-                android:text="Lynx Version" />
+                android:text="Secure Board Version" />
             <TextView
-                android:id="@+id/lynxVersion"
-                android:gravity="end"
-                android:text="@string/getting"
-                android:padding="3dip"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:padding="3dip"
-                android:text="Upt Version" />
-            <TextView
-                android:id="@+id/uptVersion"
+                android:id="@+id/secureBoardVersion"
                 android:gravity="end"
                 android:text="@string/getting"
                 android:padding="3dip"/>
@@ -95,6 +84,17 @@
                 android:text="Modem Version" />
             <TextView
                 android:id="@+id/modemVersion"
+                android:gravity="end"
+                android:text="@string/getting"
+                android:padding="3dip"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:padding="3dip"
+                android:text="Card Redirection" />
+            <TextView
+                android:id="@+id/cardRedirect"
                 android:gravity="end"
                 android:text="@string/getting"
                 android:padding="3dip"/>
