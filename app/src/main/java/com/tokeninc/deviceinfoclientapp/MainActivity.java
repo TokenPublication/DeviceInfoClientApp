@@ -3,7 +3,6 @@ package com.tokeninc.deviceinfoclientapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.tokeninc.deviceinfo.DeviceInfo;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView fiscalIdText, modemVersionText, lynxVersionText, uptVersionText, imeiNumberText, imsiNumberText;
+    TextView fiscalIdText, modemVersionText, secureBoardVersionText, imeiNumberText, imsiNumberText, cardRedirectionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lynxVersionText = findViewById(R.id.lynxVersion);
-        uptVersionText = findViewById(R.id.uptVersion);
+        secureBoardVersionText = findViewById(R.id.secureBoardVersion);
         fiscalIdText = findViewById(R.id.fiscalID);
         modemVersionText = findViewById(R.id.modemVersion);
         imeiNumberText = findViewById(R.id.imeiNumber);
         imsiNumberText = findViewById(R.id.imsiNumber);
+        cardRedirectionText = findViewById(R.id.cardRedirect);
 
         DeviceInfo deviceInfo = new DeviceInfo(this);
 
@@ -81,29 +80,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // get Lynx version
-        deviceInfo.getLynxVersion(new DeviceInfo.DeviceInfoResponseHandler() {
+        // get SecureBoardVersion version
+        deviceInfo.getSecureBoardVersion(new DeviceInfo.DeviceInfoResponseHandler() {
             @Override
             public void onSuccess(String result) {
-                lynxVersionText.setText(result);
+                secureBoardVersionText.setText(result);
             }
 
             @Override
             public void onFail(String errMessage) {
-                lynxVersionText.setText(errMessage);
+                secureBoardVersionText.setText(errMessage);
             }
         });
 
-        // get Upt version
-        deviceInfo.getUptVersion(new DeviceInfo.DeviceInfoResponseHandler() {
+        // get CardRedirection version
+        deviceInfo.getCardRedirection(new DeviceInfo.DeviceInfoResponseHandler() {
             @Override
             public void onSuccess(String result) {
-                uptVersionText.setText(result);
+                DeviceInfo.CardRedirect cardRedirect = DeviceInfo.CardRedirect.valueOf(result);
+
+                switch (cardRedirect)
+                {
+                    case YES:
+                        // your code here
+                        break;
+                    case NO:
+                        // your code here
+                        break;
+                    case NOT_ASSIGNED:
+                        // your code here
+                        break;
+                }
+
+                cardRedirectionText.setText(DeviceInfo.CardRedirect.valueOf(result).toString());
             }
 
             @Override
             public void onFail(String errMessage) {
-                uptVersionText.setText(errMessage);
+                cardRedirectionText.setText(errMessage);
             }
         });
 
@@ -141,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Example 4: Setting bank parameters
-        deviceInfo.setBankParams(result-> {
+        deviceInfo.setAppParams(result-> {
             Log.i("Example 4", "setBankParams returned: " + result);
         }, "13232", "122a2");
     }
