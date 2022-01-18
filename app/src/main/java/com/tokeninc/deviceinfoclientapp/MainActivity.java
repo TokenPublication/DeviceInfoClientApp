@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.tokeninc.deviceinfo.DeviceInfo;
@@ -25,6 +26,19 @@ public class MainActivity extends AppCompatActivity {
         imeiNumberText = findViewById(R.id.imeiNumber);
         imsiNumberText = findViewById(R.id.imsiNumber);
         cardRedirectionText = findViewById(R.id.cardRedirect);
+
+        refresh();
+    }
+
+    private void refresh()
+    {
+        final String defaultText = getString(R.string.getting);
+        secureBoardVersionText.setText(defaultText);
+        fiscalIdText.setText(defaultText);
+        modemVersionText.setText(defaultText);
+        imeiNumberText.setText(defaultText);
+        imsiNumberText.setText(defaultText);
+        cardRedirectionText.setText(defaultText);
 
         DeviceInfo deviceInfo = new DeviceInfo(this);
 
@@ -158,5 +172,9 @@ public class MainActivity extends AppCompatActivity {
         deviceInfo.setAppParams(result-> {
             Log.i("Example 4", "setBankParams returned: " + result);
         }, "13232", "122a2");
+    }
+
+    public void onRefreshButton(View view) {
+        refresh();
     }
 }

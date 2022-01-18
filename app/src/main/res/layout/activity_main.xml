@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:layout_margin="20dp"
         android:stretchColumns="0"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="20dp">
+        >
 
         <TableRow>
 
@@ -99,7 +97,20 @@
                 android:text="@string/getting"
                 android:padding="3dip"/>
         </TableRow>
-
     </TableLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        android:layout_gravity="right"
+        android:drawableLeft="@drawable/ic_baseline_wifi_protected_setup_24"
+        android:layout_margin="20dp"
+        android:onClick="onRefreshButton"
+        >
+
+    </Button>
+
+
+
+</LinearLayout>
